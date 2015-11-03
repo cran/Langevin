@@ -1,21 +1,21 @@
-\documentclass[article, shortnames, nojss]{jss}
+\documentclass[codesnippet, shortnames, nojss]{jss}
 \usepackage{amsmath, amssymb}
-%\VignetteIndexEntry{An introduction to modeling stochastic processes with the Langevin Approach}
+%\VignetteIndexEntry{An Introduction to Modeling Markov Processes with the Langevin Approach}
 %\VignetteKeywords{Langevin}
 %\VignetteDepends{Langevin}
 
-\title{The \pkg{Langevin} Approach:\\ 
-       An \proglang{R} Package for Modeling Stochastic Processes}
+\title{The \pkg{Langevin} Approach:\\
+       An \proglang{R} Package for Modeling Markov Processes}
 
-\author{Philip Rinn\\Universit\"at Oldenburg \And 
-        Pedro G. Lind\\Universit\"at Oldenburg \And 
-        Matthias W\"achter\\Universit\"at Oldenburg \And 
+\author{Philip Rinn\\Universit\"at Oldenburg \And
+        Pedro G. Lind\\Universit\"at Oldenburg \And
+        Matthias W\"achter\\Universit\"at Oldenburg \And
         Joachim Peinke\\Universit\"at Oldenburg}
 
 \Plainauthor{Philip Rinn, Pedro Lind, Matthias W\"achter, Joachim Peinke}
-\Plaintitle{The Langevin Approach: An R Package for Modeling Stochastic Processes}
+\Plaintitle{The Langevin Approach: An R Package for Modeling Markov Processes}
 
-\Abstract{We describe an \proglang{R} package developed by the research group \textit{Turbulence, wind energy and stochastics} (TWiSt) at the Carl von Ossietzky University of Oldenburg, which extracts the (stochastic) evolution equation underlying a set of data or measurements. The method can be directly applied to data sets with one or two stochastic variables. Examples for the one-dimensional and two-dimensional cases are provided. This framework is valid under a small set of conditions which are explicitly presented and which imply simple preliminary test procedures to the data. For Markovian processes involving Gaussian white noise, a stochastic differential equation is derived straightforwardly from the time series and captures the full dynamical properties of the underlying process. Still, even in the case such conditions are not fulfilled, there are alternative versions of this method which we discuss briefly and provide the user with the necessary bibliography.}
+\Abstract{We describe an \proglang{R} package developed by the research group \textit{Turbulence, Wind energy and Stochastics} (TWiSt) at the Carl von Ossietzky University of Oldenburg, which extracts the (stochastic) evolution equation underlying a set of data or measurements. The method can be directly applied to data sets with one or two stochastic variables. Examples for the one-dimensional and two-dimensional cases are provided. This framework is valid under a small set of conditions which are explicitly presented and which imply simple preliminary test procedures to the data. For Markovian processes involving Gaussian white noise, a stochastic differential equation is derived straightforwardly from the time series and captures the full dynamical properties of the underlying process. Still, even in the case such conditions are not fulfilled, there are alternative versions of this method which we discuss briefly and provide the user with the necessary bibliography.}
 
 \Keywords{\proglang{R}, stochastic processes, data analysis}
 \Plainkeywords{R, stochastic processes, data analysis}
@@ -54,7 +54,7 @@ We start in Sec.~\ref{sec:maths} by describing the mathematical background on wh
 
 \subsection{The Langevin model}
 
-A wide range of dynamical systems can be described by a stochastic differential equation, the (non-linear) Langevin equation \citep[cf.][]{Risken1996,Hanggi1982,Kampen2007}. 
+A wide range of dynamical systems can be described by a stochastic differential equation, the (non-linear) Langevin equation \citep[cf.][]{Risken1996,Hanggi1982,Kampen2007}.
 
 Consider a general stochastic trajectory $X(t)$ in time $t$. The time derivative of the system's trajectory $\frac{dX}{dt}$ can be expressed as the sum of two complementary contributions: one being purely deterministic and another one being stochastic, governed by a stochastic ``force'' $\Gamma(t)$, defined as a $\delta$-correlated Gaussian white noise, i.e.~$\langle \Gamma(t) \rangle = 0$  and $\langle \Gamma(t) \Gamma(t^{\prime}) \rangle = 2\delta(t - t^{\prime})$.
 While the deterministic term is defined by a function, $D^{(1)}(X)$ the stochastic contribution is weighted by another function, $D^{(2)}(X)$, yielding the evolution equation of $X$
@@ -62,7 +62,7 @@ While the deterministic term is defined by a function, $D^{(1)}(X)$ the stochast
 \begin{equation}
 \frac{dX}{dt} = D^{(1)}(X) + \sqrt{D^{(2)}(X)} \, \Gamma(t) \, ,
 \label{Langevin}
-\end{equation} 
+\end{equation}
 
 where the square root is taken for consistency, as will be clear below. We assume stationary time series here, so $D^{(1)}$ and $D^{(2)}$ are not time dependent but we show briefly how non-stationary time series can be treated in Sec.~\ref{sec:remarks}.
 
@@ -79,7 +79,7 @@ where $\eta(t)$ is a normally distributed random variable. Here we use the It\^o
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/Langevin-1D-example-ts}
-\caption{{\bf (a)} Sketch of a stochastic process in time governed by a cubic drift and constant diffusion contributions and {\bf (b)} its corresponding probability density function (PDF). Though the series shows a bistable dynamics (cubic drift) the PDF follows a Gaussian function, equivalent to an Ornstein-Uhlenbeck process (see text).}
+\caption{{\bf (a)} Sketch of a stochastic process in time governed by a cubic drift and quadratic diffusion contributions and {\bf (b)} its corresponding probability density function (PDF). Though the series shows a bistable dynamics (cubic drift) the PDF follows a Gaussian function, equivalent to an Ornstein-Uhlenbeck process (see text).}
 \label{fig01}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,7 +88,7 @@ Functions $D^{(1)}(X)$ and $D^{(2)}(X)$ are usually called drift and diffusion c
 
 In all cases, through substitution of the selected functions into Eq.~(\ref{LangevinDisc}) one is able to generate samples of series having the same statistical features and obeying the same dynamics.
 
-Figure \ref{fig01}a shows an illustration of a time series obtained through integration of Eq.~(\ref{LangevinDisc}) for a cubic drift $D^{(1)}(X) = -X^3 + X$, and a quadratic diffusion, $D^{(2)}(X) = X^2 + 1$. Notice that these drift and diffusion coefficients describe a non-trivial dynamics, namely the underlying deterministic process, $D^{(2)} \equiv 0$, has two attractive fixed points at $X = \pm 1$. The processes tends to converge to one of two stable states being at the same time perturbed by a stochastic fluctuation ($D^{(2)} \neq 0$) which is able to push the system from one stable fixed point to the other. As shown in Fig.~\ref{fig01}b, despite this non-trivial dynamics, the PDF is a Gaussian distribution with zero mean and unit standard deviation, the same PDF as for a simple Ornstein-Uhlenbeck process with $D^{(1)} = -X$ and $D^{(2)} = 1$.
+Figure \ref{fig01}a shows an illustration of a time series obtained through integration of Eq.~(\ref{LangevinDisc}) for a cubic drift $D^{(1)}(X) = -X^3 + X$, and a quadratic diffusion, $D^{(2)}(X) = X^2 + 1$. Notice that these drift and diffusion coefficients describe a non-trivial dynamics, namely the underlying deterministic process, i.e. $D^{(2)} \equiv 0$, has two attractive fixed points at $X = \pm 1$. The processes tends to converge to one of two stable states being at the same time perturbed by a stochastic fluctuation ($D^{(2)} \neq 0$) which is able to push the system from one stable fixed point to the other. As shown in Fig.~\ref{fig01}b, despite this non-trivial dynamics, the PDF is a Gaussian distribution with zero mean and unit standard deviation, the same PDF as for a simple Ornstein-Uhlenbeck process with $D^{(1)} = -X$ and $D^{(2)} = 1$.
 
 This is one of many possible examples that illustrates the deep insight, which an evolution equation like in Eq.~(\ref{Langevin}) can provide and which is not obtained by looking at a density distribution, see Appendix~\ref{append:twodyn} for further details.
 
@@ -97,7 +97,7 @@ This is one of many possible examples that illustrates the deep insight, which a
 
 As explained previously, it is easy to generate data through the integration of a stochastic equation, such as Eq.~(\ref{LangevinDisc}). More difficult is the inverse problem, to derive functions $D^{(1)}$ and $D^{(2)}$ from given data.
 
-A condition to derive the drift and diffusion numerically is that the time-steps $\tau$ of the set of $X$-values are small enough (see \citet{Honisch2011} for details). If the system is at time $t$ in the state $x = X(t)$ the drift can be calculated for small $\tau$ by averaging over the difference, $X(t + \tau) - X(t)$, of the system state at $t + \tau$ and the state at $t$. Check Eq.~(\ref{LangevinDisc}) above. This average is the first conditional moment of the series and it can be mathematically proven that its time derivative yields the drift coefficient. Similarly, computing the second conditional moment, i.e.~the average squared differences between $X(t + \tau)$ and $x$, yields the diffusion coefficient \citep{Risken1996}. 
+A condition to derive the drift and diffusion numerically is that the time-steps $\tau$ of the set of $X$-values are small enough (see \citet{Honisch2011} for details). If the system is at time $t$ in the state $x = X(t)$ the drift can be calculated for small $\tau$ by averaging over the difference, $X(t + \tau) - X(t)$, of the system state at $t + \tau$ and the state at $t$. Check Eq.~(\ref{LangevinDisc}) above. This average is the first conditional moment of the series and it can be mathematically proven that its time derivative yields the drift coefficient. Similarly, computing the second conditional moment, i.e.~the average squared differences between $X(t + \tau)$ and $x$, yields the diffusion coefficient \citep{Risken1996}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
@@ -110,26 +110,26 @@ A condition to derive the drift and diffusion numerically is that the time-steps
 
 Therefore, having a series of data, one estimates the drift and diffusion by computing the averages of the first and second power of the differences between $X(t + \tau)$ and $x$:
 
-\begin{equation} 
+\begin{equation}
 M^{(n)}(x,\tau) = \langle (X(t+\tau) - X(t))^n \rangle
 |_{X(t) = x} ,
 \label{condmom}
-\end{equation} 
+\end{equation}
 
 where $\langle\cdot\rangle$ represents the average over time $t$. Mathematically the drift and diffusion coefficients are defined as \citep{Risken1996}
 
-\begin{equation} 
-D^{(n)}(x) = \lim_{\tau \rightarrow 0} \frac{1}{n!\tau} 
+\begin{equation}
+D^{(n)}(x) = \lim_{\tau \rightarrow 0} \frac{1}{n!\tau}
 M^{(n)}(x,\tau) ,
  \label{driftdiff}
-\end{equation} 
+\end{equation}
 
 which means that they are given by derivatives of the corresponding conditional moments $M^{(n)}(x, \tau)$ with respect to $\tau$. In many cases, for a fixed $x$, the conditional moments depend linearly on $\tau$ for the smallest range of $\tau$ values and consequently the drift and the diffusion coefficients at this state $x$ are estimated solely by the quotient between the corresponding conditional moment and
-$\tau$ in this range. 
+$\tau$ in this range.
 
 Figures \ref{fig02}a and \ref{fig02}b show respectively the drift and diffusion coefficients of the series integrated in the previous section and sketched in Fig.~\ref{fig01}. The theoretical expressions of the coefficients used when generating the synthetic data through integration of Eq.~(\ref{Langevin}) are indicated as red dashed lines, while the estimated values of the coefficients at each selected bin are plotted with bullets.
 
- 
+
 \subsection{Back to the data}
 \label{subsec:back}
 
@@ -153,7 +153,7 @@ The third condition to be tested comes from a mathematical result called Pawula 
 necessary condition for Eq.~(\ref{Langevin}) to be valid: the fourth conditional moment must be constant, i.e.~$D^{(4)} = 0$. To test that one computes its derivative with respect to the time-lag, the fourth coefficient
 
 \begin{equation}
-D^{(4)}(x) = \lim_{\tau \rightarrow 0} \frac{1}{4!\tau}\langle (X(t+\tau) - X(t))^4 \rangle |_{X(t) = x} 
+D^{(4)}(x) = \lim_{\tau \rightarrow 0} \frac{1}{4!\tau}\langle (X(t+\tau) - X(t))^4 \rangle |_{X(t) = x}
  \label{D4}
 \end{equation}
 
@@ -169,7 +169,7 @@ The first one is to check if the stochastic force in Eq.~(\ref{Langevin}) fulfil
 \eta(t) = \frac{X(t + \tau) - X(t) - D^{(1)}(X)\tau}{\sqrt{D^{(2)}(X)\tau}} \, .
 \end{equation}
 
-Taking $\tau$ as the time-step of the observed time-series and substituting in $X(t + \tau)$ and $X(t)$ successive values of that series one re-obtains a series for $\eta(t)$ which should be normally distributed. 
+Taking $\tau$ as the time-step of the observed time-series and substituting in $X(t + \tau)$ and $X(t)$ successive values of that series one re-obtains a series for $\eta(t)$ which should be normally distributed.
 
 The second cross-checking test is to substitute in Eq.~(\ref{LangevinDisc}) the derived $D^{(1)}(X)$ and $D^{(2)}(X)$ coefficients, generate synthetic series and compare if its increments
 
@@ -178,7 +178,7 @@ The second cross-checking test is to substitute in Eq.~(\ref{LangevinDisc}) the 
 \label{increments}
 \end{equation}
 
-have the same distribution as the original series for a fixed $\tau$ spanning from the time-step of the original series ($\tau = 1$) up to two or more orders of magnitude larger ($\tau \gg 1$).
+have the same distribution as the original series for a fixed $\tau$ spanning from the time-step of the original series up to two or more orders of magnitude larger.
 
 Some extra care should be taken if the derived $D^{(1)}(X)$ and $D^{(2)}(X)$ coefficients show linear drift and quadratic diffusion forms as this is also the case for every Langevin process if the sampling interval is large compared to the relaxation time of the process. \citet{Riera2010} presented a method for cross-checking in this case.
 
@@ -195,73 +195,91 @@ The one-dimensional case deals with an evolution equation similar to Eq.~(\ref{L
 \begin{equation}
 \frac{d}{dt}
 \left [
-\begin{array}{c} 
+\begin{array}{c}
 X_1 \\
-X_2 
+X_2
 \end{array}
 \right ]
- = 
+ =
 \left [
 \begin{array}{c}
 D^{(1)}_1(X_1,X_2) \\
-D^{(1)}_2(X_1,X_2) 
+D^{(1)}_2(X_1,X_2)
 \end{array}
 \right ]
 + \left [
-\begin{array}{cc} 
+\begin{array}{cc}
 g_{11}(X_1,X_2) &g_{12}(X_1,X_2) \\
-g_{21}(X_1,X_2) &g_{22}(X_1,X_2) 
+g_{21}(X_1,X_2) &g_{22}(X_1,X_2)
 \end{array}
 \right ]
 \left [
 \begin{array}{cc}
 \Gamma_1(t) \\
-\Gamma_2(t) 
+\Gamma_2(t)
 \end{array}
 \right ]
 \label{Langevin2D}
-\end{equation} 
+\end{equation}
 
-where clearly now the drift function $\mathbf{D}^{(1)} = (D^{(1)}_1, D^{(1)}_2)$ is a two-dimensional vector and the diffusion coefficient is a$2\times 2$-matrix given by $\mathbf{D}^{(2)} = \mathbf{g}\mathbf{g}^T$, i.e.~$D^{(2)}_{ij} = \sum_k g_{ik}g_{jk}$. Similar to the one-dimensional case the integration of Eq.~\ref{Langevin2D} follows from a simple Euler scheme leading to:
+where clearly now the drift function $\mathbf{D}^{(1)} = (D^{(1)}_1, D^{(1)}_2)$ is a two-dimensional vector and the diffusion coefficient is a $2\times 2$-matrix given by $\mathbf{D}^{(2)} = \mathbf{g}\mathbf{g}^T$, i.e.~$D^{(2)}_{ij} = \sum_k g_{ik}g_{jk}$. Similar to the one-dimensional case the integration of Eq.~\ref{Langevin2D} follows from a simple Euler scheme leading to:
 
-\begin{eqnarray}
+\begin{equation}
+\begin{array}{r@{}l}
 \left [
-\begin{array}{c} 
+\begin{array}{c}
 X_1(t+\tau) \\ X_2(t+\tau)
 \end{array}
 \right ]
- &=& 
+ =
 \left [
-\begin{array}{c} 
+\begin{array}{c}
 X_1(t) \\ X_2(t)
 \end{array}
 \right ]
-+\tau\left [
+&{}+ \tau\left [
 \begin{array}{c}
-D^{(1)}_1(X_1,X_2) \\ D^{(1)}_2(X_1,X_2) 
+D^{(1)}_1(X_1,X_2) \\ D^{(1)}_2(X_1,X_2)
 \end{array}
-\right ] \cr
- & & \cr
-& & \quad \quad \quad \quad 
-+ \sqrt{\tau}\left [
-\begin{array}{cc} 
+\right ] \\
+&{}+ \sqrt{\tau}\left [
+\begin{array}{cc}
 g_{11}(X_1,X_2) &g_{12}(X_1,X_2) \\
-g_{21}(X_1,X_2) &g_{22}(X_1,X_2) 
+g_{21}(X_1,X_2) &g_{22}(X_1,X_2)
 \end{array}
 \right ]
 \left [
 \begin{array}{cc}
 \eta_1(t) \\
-\eta_2(t) 
+\eta_2(t)
 \end{array}
 \right ]
+\end{array}
 \label{Langevin2DDisc}
-\end{eqnarray} 
+\end{equation}
 
 where $\eta_1(t)$ and $\eta_2(t)$ are two independent normally distributed random variables.
 
-The implementation of the functions heavily relies on the \proglang{C++} linear algebra library {\tt Armadillo} \citep{Sanderson2010} for which \pkg{RcppArmadillo} and \pkg{Rcpp} provide the integration with \proglang{R} \citep{Eddelbuettel2011,Eddelbuettel2014}. 
-The functions \code{Langevin1D} and \code{Langevin2D} use {\tt OpenMP} \citep{Dagum1998} if available to take advantage of shared memory multiprocessing.
+In our implementation the conditional moments $M^{(n)}(x,\tau)$, Eq.~(\ref{condmom}), are estimated by dividing the state space of $x$ in $N$ intervals, or bins, $(I_1, ..., I_N)$ and calculating the mean values for each interval $I_i$:
+
+\begin{equation}
+  M^{(n)}(x,\tau) = \langle (X(t+\tau) - X(t))^n \rangle |_{X(t) \in I_i}\,.
+  \label{condmomI}
+\end{equation}
+
+For estimating the drift and diffusion coefficients from the conditional moments we insert Eq.~(\ref{LangevinDisc}) into Eq.~(\ref{condmomI}) and apply the conditional averages for $n = 1, 2$ leading to:
+
+\begin{eqnarray}
+  \label{finiteTauApproxM1}
+  M^{(1)}(x,\tau) &\approx& D^{(1)}(x)\tau\,,\\
+  M^{(2)}(x,\tau) &\approx& 2D^{(2)}(x)\tau + (D^{(1)}(x)\tau)^2 \,.
+  \label{finiteTauApproxM2}
+\end{eqnarray}
+
+Important to notice is that for $M^{(2)}(x,\tau)$, Eq.~(\ref{finiteTauApproxM2}), a term quadratic in $D^{(1)}(x)$ and $\tau$ has to be considered. We estimate drift and diffusion coefficients from the slope of a weighted linear regression of Eqn.~(\ref{finiteTauApproxM1}) and (\ref{finiteTauApproxM2}).
+
+The implementation of the functions heavily relies on the \proglang{C++} linear algebra library {\tt Armadillo} \citep{Sanderson2010} for which \pkg{RcppArmadillo} and \pkg{Rcpp} provide the integration with \proglang{R} \citep{Eddelbuettel2011,Eddelbuettel2014}. We choose {\tt Armadillo} as it results in fast code especially for large data sets and has an easy readable syntax.
+The functions \code{Langevin1D} and \code{Langevin2D} use {\tt OpenMP} \citep{Dagum1998} if available to take advantage of shared memory multiprocessing. Here we parallelize the evaluation of the drift and diffusion coefficients for the bins as their evaluation is independent for each bin.
 
 In the following subsections we present one- and two-dimensional examples of Langevin processes and walk through the analysis based on the framework described in the previous section.
 
@@ -271,7 +289,7 @@ In the following subsections we present one- and two-dimensional examples of Lan
 
 As an example we integrate the Langevin equation illustrated in Fig.~\ref{fig01}a with cubic drift and quadratic diffusion, namely
 
-\begin{equation} 
+\begin{equation}
 \frac{dx}{dt} = x(t) - x^3(t) + \sqrt{x^2(t) + 1} \, \Gamma(t) \, .
 \label{ex1D}
 \end{equation}
@@ -280,10 +298,10 @@ The presented package provides the function \code{timeseries1D} to do the integr
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> library("Langevin");
-R> sf <- 1000;
-R> set.seed(4711);
-R> x <- timeseries1D(N=1e7, d11=1, d13=-1, d22=1, d20=1, sf=sf);
+R> library("Langevin")
+R> sf <- 1000
+R> set.seed(4711)
+R> x <- timeseries1D(N=1e7, d11=1, d13=-1, d22=1, d20=1, sf=sf)
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -295,10 +313,10 @@ The second parameter is the vector \code{steps} to calculate the conditional mom
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> bins <- 40;
-R> steps <- c(1:3);
+R> bins <- 40
+R> steps <- c(1:3)
 
-R> ests <- Langevin1D(x, bins, steps, sf);
+R> ests <- Langevin1D(x, bins, steps)
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -306,50 +324,55 @@ From the resulting list \code{ests}, plots of the estimated drift and diffusion 
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> library("plotrix");
-R> attach(ests);
-R> par(mfrow=c(1,2));
-R> plotCI(mean_bin, D1, uiw=eD1, xlab="x [a.u.]", 
-+    ylab=expression(paste("Drift coefficient ",D^(1), "(x) [a.u.]")), 
-+    cex=2, pch=20);
-R> lines(mean_bin, mean_bin - mean_bin^3, col="red", lwd=3, lty=2);
-R> plotCI(mean_bin, D2, uiw=eD2, xlab="x [a.u.]", 
+R> library("plotrix")
+R> attach(ests)
+R> par(mfrow=c(1,2))
+R> plotCI(mean_bin, D1, uiw=eD1, xlab="x [a.u.]",
++    ylab=expression(paste("Drift coefficient ",D^(1), "(x) [a.u.]")),
++    cex=2, pch=20)
+R> lines(mean_bin, mean_bin - mean_bin^3, col="red", lwd=3, lty=2)
+R> plotCI(mean_bin, D2, uiw=eD2, xlab="x [a.u.]",
 +    ylab=expression(paste("Diffusion coefficient ",D^(2), "(x) [a.u.]")),
-+    cex=2, pch=20);
-R> lines(mean_bin, mean_bin^2 + 1, col="red", lwd=3, lty=2);
++    cex=2, pch=20)
+R> lines(mean_bin, mean_bin^2 + 1, col="red", lwd=3, lty=2)
 \end{CodeInput}
 \end{CodeChunk}
 
 We now want to walk through some of the remarks given in Sec.~\ref{subsec:back} to check if the conditions under which we applied the Langevin Approach are fulfilled. We do not check if the time series is stationary and fulfills the Markovian properties, since here we already know this (as we are using synthetic data).
 
-Therefore we concentrate on cross-checking the estimated drift and diffusion coefficients. For checking if $D^{(4)}(X)$ is small compared to $D^{(2)}(X)$ (Pawula Theorem) we compute the ratio between $D^{(4)}$ and $(D^{(2)})^2$:
+Therefore we concentrate on cross-checking the estimated drift and diffusion coefficients. For checking if $D^{(4)}(X)$ is small compared to $D^{(2)}(X)$ (Pawula Theorem) we use the function \code{summary} which also computes the ratio between $D^{(4)}$ and $(D^{(2)})^2$:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> summary(D4/D2^2)
+R> summary(ests)
 \end{CodeInput}
 \begin{CodeOutput}
-       V1          
- Min.   :0.002004  
- 1st Qu.:0.002032  
- Median :0.002102  
- Mean   :0.002385  
- 3rd Qu.:0.002533  
- Max.   :0.004487  
- NA's   :7
+ Number of bins: 40
+ Population of the bins:
+	Min.  : 3
+	Median: 32034
+	Mean  : 250000
+	Max.  : 1053446
+ Number of NA's for D1: 7
+ Number of NA's for D2: 7
+ Ratio between D4 and D2^2:
+	Min.  : 0.002004
+	Median: 0.002102
+	Mean  : 0.002385
+	Max.  : 0.004487
 \end{CodeOutput}
 \end{CodeChunk}
 
-The result shows that $D^{(4)}(X)$ is smaller than $5\%$ of the squared diffusion coefficient, indicating the necessary condition of the Pawula Theorem holds.
+The result shows that $D^{(4)}(X)$ is smaller than $0.5\%$ of the squared diffusion coefficient, indicating the necessary condition of the Pawula Theorem holds.
 
-As a second cross-check we compare the increments, as defined in Eq.~(\ref{increments}), of the original time series with the ones computed from the reconstructed time series based on the estimated drift and diffusion functions. 
+As a second cross-check we compare the increments, as defined in Eq.~(\ref{increments}), of the original time series with the ones computed from the reconstructed time series based on the estimated drift and diffusion functions.
 
 To this end we fit a cubic function to the estimated drift coefficient and a quadratic function to the diffusion coefficient:
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> estD1 <- coef(lm(D1 ~ mean_bin + I(mean_bin^2) + I(mean_bin^3), weights=1/eD1));
-R> estD2 <- coef(lm(D2 ~ mean_bin + I(mean_bin^2), weights=1/eD2));
+R> estD1 <- coef(lm(D1 ~ mean_bin + I(mean_bin^2) + I(mean_bin^3), weights=1/eD1))
+R> estD2 <- coef(lm(D2 ~ mean_bin + I(mean_bin^2), weights=1/eD2))
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -358,7 +381,7 @@ The resulting coefficients are used to generate a new time series with \code{tim
 \begin{CodeChunk}
 \begin{CodeInput}
 R> rec_x <- timeseries1D(N=1e7, d10=estD1[1], d11=estD1[2], d12=estD1[3],
-+    d13=estD1[4], d20=estD2[1],d21=estD2[2], d22=estD2[3], sf=sf);
++    d13=estD1[4], d20=estD2[1],d21=estD2[2], d22=estD2[3], sf=sf)
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -368,20 +391,20 @@ From the original and the reconstructed time series we now calculate PDFs of the
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> plot(1,1, log="y", type="n", xlim=c(-11,12), ylim=c(1e-17,5), 
-+    xlab=expression(Delta[tau]/sigma[Delta[tau]]), ylab="density");
+R> plot(1,1, log="y", type="n", xlim=c(-11,12), ylim=c(1e-17,5),
++    xlab=expression(Delta[tau]/sigma[Delta[tau]]), ylab="density")
 
-R> tau <- c(1,10,100,1000);
+R> tau <- c(1,10,100,1000)
 R> for(i in 1:4) {
-R>     delta <- diff(Ux, lag=tau[i]);
-R>     rec_delta <- diff(rec_x, lag=tau[i]);
-R>     den <- density(delta);
-R>     den$x <- den$x/sd(delta, na.rm=T);
-R>     rec_den <- density(rec_delta);
-R>     rec_den$x <- rec_den$x/sd(rec_delta, na.rm=T);
-R>     lines(den, lwd=2, col=i);
-R>     lines(rec_den, lwd=2, lty=2, col=i);
-R> }
++      delta <- diff(Ux, lag=tau[i])
++      rec_delta <- diff(rec_x, lag=tau[i])
++      den <- density(delta)
++      den$x <- den$x/sd(delta, na.rm=T)
++      rec_den <- density(rec_delta)
++      rec_den$x <- rec_den$x/sd(rec_delta, na.rm=T)
++      lines(den, lwd=2, col=i)
++      lines(rec_den, lwd=2, lty=2, col=i)
++  }
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -404,20 +427,20 @@ Notice once again that while the PDF of the series generated by Eq.~(\ref{ex1D})
 As a two-dimensional example we integrate the coupled Langevin equations in Eqs.~(\ref{Langevin2D}) for a particular choice of the drift and diffusion coefficients, namely \citep{Siegert1998}
 
 \begin{subequations}
-\begin{eqnarray} 
+\begin{eqnarray}
 \frac{X_1}{dt} &=& X_2 + a\Gamma_1(t) \\
 \frac{X_2}{dt} &=& 0.02X_1 + 0.03X_2 - X_1^3 - X_1^2X_2 + a\Gamma_2(t) \, ,
 \end{eqnarray}
 \label{ex2D}
 \end{subequations}
 
-where $a$ is a constant. Figure \ref{fig03}a shows the integrated trajectory $(X_1, X_2)$ for $a = 0$, a case where no stochastic contribution is present, whereas in Fig.~\ref{fig03}b the same trajectory is plotted now with stochastic forces having a constant amplitude of $a = 0.05$. 
+where $a$ is a constant. Figure \ref{fig03}a shows the integrated trajectory $(X_1, X_2)$ for $a = 0$, a case where no stochastic contribution is present, whereas in Fig.~\ref{fig03}b the same trajectory is plotted now with stochastic forces having a constant amplitude of $a = 0.05$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/Langevin-2D-example-ts}
-\caption{{\bf (a)} Trajectory $(X_1(t), X_2(t))$ from Eqs.~(\ref{ex2D}) with $a = 0$ and {\bf (b)} the same trajectory integrating the same equations with non-zero stochastic terms ($a = 0.05$). For plotting $10^6$ resp. $10^5$ data points where used.} 
+\caption{{\bf (a)} Trajectory $(X_1(t), X_2(t))$ from Eqs.~(\ref{ex2D}) with $a = 0$ and {\bf (b)} the same trajectory integrating the same equations with non-zero stochastic terms ($a = 0.05$). For plotting $10^6$ resp. $10^5$ data points where used.}
 \label{fig03}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -432,26 +455,26 @@ The results shown in Fig.~\ref{fig04} are generated by the following command lin
 
 \begin{CodeChunk}
 \begin{CodeInput}
-R> D1_1 <- matrix(0, nrow=4, ncol=4);
-R> D1_1[1,2] <- 1;
-R> D1_2 <- matrix(0, nrow=4, ncol=4);
-R> D1_2[2,1] <- 0.02;
-R> D1_2[1,2] <- 0.03;
-R> D1_2[4,1] <- -1;
-R> D1_2[3,2] <- -1;
+R> D1_1 <- matrix(0, nrow=4, ncol=4)
+R> D1_1[1,2] <- 1
+R> D1_2 <- matrix(0, nrow=4, ncol=4)
+R> D1_2[2,1] <- 0.02
+R> D1_2[1,2] <- 0.03
+R> D1_2[4,1] <- -1
+R> D1_2[3,2] <- -1
 
-R> g_11 <- matrix(0, nrow=3, ncol=3);
-R> g_12 <- matrix(0, nrow=3, ncol=3);
-R> g_21 <- matrix(0, nrow=3, ncol=3);
-R> g_22 <- matrix(0, nrow=3, ncol=3);
-R> g_11[1,1] <- 0.0025;
-R> g_22[1,1] <- 0.0025;
+R> g_11 <- matrix(0, nrow=3, ncol=3)
+R> g_12 <- matrix(0, nrow=3, ncol=3)
+R> g_21 <- matrix(0, nrow=3, ncol=3)
+R> g_22 <- matrix(0, nrow=3, ncol=3)
+R> g_11[1,1] <- 0.0025
+R> g_22[1,1] <- 0.0025
 
-R> set.seed(4711);
+R> set.seed(4711)
 R> x <- timeseries2D(N=1e8, 0.145, 0.0002, D1_1, D1_2,
-+    g_11, g_12, g_21, g_22, sf=sf);
++    g_11, g_12, g_21, g_22, sf=sf)
 
-R> ests <- Langevin2D(x, bins, steps, sf);
+R> ests <- Langevin2D(x, bins, steps)
 \end{CodeInput}
 \end{CodeChunk}
 
@@ -482,7 +505,7 @@ A third problem that may appear during preliminary tests of empirical data is th
 
 Finally, it is also important to stress that, while the functions of the presented package were prepared for analyzing data series as processes in time, the Langevin Approach can be adapted for analyzing processes in scale. In fact, when the process is not Markovian in time, violating Eq.~(\ref{conditional}), there is the possibility that it is Markovian in ``scale''. What does this mean? It means that the increments $\Delta_{\tau}$ introduced above follow a Markovian process in $\tau$ i.e.~in time-lags but are instationary. Such analysis in scale is able to reproduce e.g.~turbulence energy cascades \citep{Friedrich1997, Stresing2010} or ocean rogue waves \citep{Hadjihosseini2014}.
 
-More details on all these extensions and alternatives to the Langevin Approach can be found in \citet{Friedrich2011}. 
+More details on all these extensions and alternatives to the Langevin Approach can be found in \citet{Friedrich2011}.
 
 
 \section{Discussion and conclusions}
@@ -492,7 +515,7 @@ In this paper we present an \proglang{R} package for stochastic data analysis th
 
 The introduced functions serve as a framework to analyze one- and two-dimensional time series. They provide estimation of drift and diffusion coefficients describing the deterministic and the stochastic part of the analyzed process respectively. Integrating Langevin processes numerically enables one for cross-checking the obtained result and for generation of synthetic data sets.
 
-Through illustrative examples we have shown that the Langevin evolution equation is able to uncover complex dynamics, even in cases when the associated statistics is identical to many other stochastic processes. 
+Through illustrative examples we have shown that the Langevin evolution equation is able to uncover complex dynamics, even in cases when the associated statistics is identical to many other stochastic processes.
 
 The presented package can be straightforwardly applied by \proglang{R}-users and it implies only a few preliminary tests to ascertain if all conditions on which the Langevin Approach is built are fulfilled. In case they are not, we briefly explain how to overcome them with simple extensions to the method that were already successfully applied in several applications \citep{Friedrich2011}.
 
@@ -510,21 +533,21 @@ The authors thank Constantino Garcia Mart\'inez (University of Santiago de Compo
 
 In this appendix we show that a large family of two-point statistical distributions, each one univocaly defining one Langevin equation, Eq.~(\ref{Langevin}), corresponds to a one-point statistics given by the standard normal distribution
 
-\begin{equation} 
+\begin{equation}
 P_0(X)\propto \exp{\left ( -\frac{X^2}{2} \right )} ,
 \label{normal}
-\end{equation} 
+\end{equation}
 
 i.e.~a Gaussian distribution with zero mean and unit variance.
 
 To that end, we start with one important remark concerning the evolution equation of one stochastic variable $X$, Eq.~(\ref{Langevin}): this equation is related to an another evolution equation, namely the one of the probability density function (PDF) of $X$, so-called Fokker-Planck Equation \citep{Risken1996}:
 
-\begin{equation} 
+\begin{equation}
 \frac{\partial P(X)}{\partial t} =
 \left ( -\frac{\partial }{\partial X} D^{(1)}(X) + \frac{\partial^2 }{\partial
   X^2} D^{(2)}(X) \right ) P(X) \, .
 \label{FP}
-\end{equation} 
+\end{equation}
 
 The stationary solution ($\frac{\partial P}{\partial t} = 0$) of the one-dimensional Fokker-Planck is given by \citet{Risken1996}:
 
@@ -538,8 +561,8 @@ For the simple Ornstein-Uhlenbeck process, governed by Eq.~(\ref{Langevin}) with
 
 One could, however, consider a much more complex dynamics such as the one exemplified in this paper, with a bistable (cubic) drift coefficient and a non-constant diffusion, depending quadratically on the stochastic variable $X$:
 
-\begin{subequations} 
-\begin{eqnarray} 
+\begin{subequations}
+\begin{eqnarray}
 D^{(1)}(X) &=& aX(b - X)(b + X) \, ,\\
 D^{(2)}(X) &=& c + dX^2 \, .
 \end{eqnarray}
@@ -550,7 +573,7 @@ Here, $D^{(1)}$ has two stable fixed points at $\pm b$, with a maximum amplitude
 
 Substituting the cubic drift and the quadratic diffusion, given in Eqs.~(\ref{thisol}), into the stationary solution, Eq.~(\ref{stationary}), and integrating, yields the stationary solution:
 
-\begin{eqnarray} 
+\begin{eqnarray}
 P(X) &\propto& \frac{1}{c+dX^2} \exp{\left ( \int_X
                          \frac{ab^2x-ax^3}{c+dx^2}dx \right )}  \cr
   & & \cr
@@ -560,7 +583,7 @@ P(X) &\propto& \frac{1}{c+dX^2} \exp{\left ( \int_X
 \label{complexstationary}
  \end{eqnarray}
 
-As one sees, the solution in Eq.~(\ref{complexstationary}) has, in general, not only a Gaussian part, like Ornstein-Uhlenbeck processes, but also a polynomial part with an exponent depending on all parameters of $D^{(1)}$ and $D^{(2)}$. However, if the exponent is exactly zero, 
+As one sees, the solution in Eq.~(\ref{complexstationary}) has, in general, not only a Gaussian part, like Ornstein-Uhlenbeck processes, but also a polynomial part with an exponent depending on all parameters of $D^{(1)}$ and $D^{(2)}$. However, if the exponent is exactly zero,
 
 \begin{equation}
 \frac{a}{2d}\left ( b^2+\frac{c}{d} \right ) - 1 = 0
@@ -572,9 +595,10 @@ the polynomial part vanishes and the stationary solution reduces to the Gaussian
 
 In general, the one-point statistic in the stationary regime given by Eq.~(\ref{stationary}) yields Gaussian distributions even in more complex dynamics than the one here chosen. One only needs to have a drift coefficient given by one polynomial of odd degree $n > 0$ and simultaneously have a diffusion coefficient given by a polynomial of degree $n-1$. In that case, whatever general expression both coefficients have, it is always possible to find a combination of their parameter values for which the quotient $D^{(1)}/D^{(2)}$ in the stationary solution reduces to a linear function in $x$ yielding the PDF of a Gaussian distribution. The two-point statistic, $P(X(t)\vert X(t-\tau))$, however is able to distinguish between sets of $(D^{(1)}, D^{(2)})$ yielding the same one-point statistic.
 
-The ambiguity of one-point statistics in characterizing the dynamics of stochastic processes in general, motivates the Langevin Approach implemented in our \proglang{R} package. Our approach has the advantage of being parameter free: since it computes numerically $D^{(1)}$ and $D^{(2)}$ without any given Ansatz, it can easily distinguish between higher-order drift and diffusion coefficients. 
+The ambiguity of one-point statistics in characterizing the dynamics of stochastic processes in general, motivates the Langevin Approach implemented in our \proglang{R} package. Our approach has the advantage of being parameter free: since it computes numerically $D^{(1)}$ and $D^{(2)}$ without any given Ansatz, it can easily distinguish between higher-order drift and diffusion coefficients.
 
 
 \bibliography{Langevin}
 
 \end{document}
+

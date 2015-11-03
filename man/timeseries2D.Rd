@@ -12,7 +12,7 @@ timeseries2D(N, startpointx = 0, startpointy = 0, D1_1 = matrix(c(0, -1,
   0), nrow = 3), sf = 1000, dt = 0)
 }
 \arguments{
-\item{N}{a scalar denoting the length of the time series to generate.}
+\item{N}{a scalar denoting the length of the time-series to generate.}
 
 \item{startpointx}{a scalar denoting the starting point of the time series x.}
 
@@ -36,8 +36,8 @@ timeseries2D(N, startpointx = 0, startpointy = 0, D1_1 = matrix(c(0, -1,
 \code{dt=0} yields \code{dt=1/sf}.}
 }
 \value{
-\code{timeseries2D} returns a matrix with the generated time series
-as rows.
+\code{timeseries2D} returns a time-series object with the generated
+time-series as colums.
 }
 \description{
 \code{timeseries2D} generates a two-dimensional Langevin process using a

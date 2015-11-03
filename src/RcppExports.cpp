@@ -60,7 +60,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // timeseries2D
-arma::mat timeseries2D(const unsigned int& N, const double& startpointx, const double& startpointy, const arma::mat& D1_1, const arma::mat& D1_2, const arma::mat& g_11, const arma::mat& g_12, const arma::mat& g_21, const arma::mat& g_22, const double& sf, double dt);
+NumericMatrix timeseries2D(const unsigned int& N, const double& startpointx, const double& startpointy, const NumericMatrix& D1_1, const NumericMatrix& D1_2, const NumericMatrix& g_11, const NumericMatrix& g_12, const NumericMatrix& g_21, const NumericMatrix& g_22, const double& sf, double dt);
 RcppExport SEXP Langevin_timeseries2D(SEXP NSEXP, SEXP startpointxSEXP, SEXP startpointySEXP, SEXP D1_1SEXP, SEXP D1_2SEXP, SEXP g_11SEXP, SEXP g_12SEXP, SEXP g_21SEXP, SEXP g_22SEXP, SEXP sfSEXP, SEXP dtSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
@@ -68,12 +68,12 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const unsigned int& >::type N(NSEXP);
     Rcpp::traits::input_parameter< const double& >::type startpointx(startpointxSEXP);
     Rcpp::traits::input_parameter< const double& >::type startpointy(startpointySEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type D1_1(D1_1SEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type D1_2(D1_2SEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type g_11(g_11SEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type g_12(g_12SEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type g_21(g_21SEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type g_22(g_22SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type D1_1(D1_1SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type D1_2(D1_2SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type g_11(g_11SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type g_12(g_12SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type g_21(g_21SEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type g_22(g_22SEXP);
     Rcpp::traits::input_parameter< const double& >::type sf(sfSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
     __result = Rcpp::wrap(timeseries2D(N, startpointx, startpointy, D1_1, D1_2, g_11, g_12, g_21, g_22, sf, dt));

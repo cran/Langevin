@@ -18,42 +18,13 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//' Generate a 1D Langevin process
-//'
-//' \code{timeseries1D} generates a one-dimensional Langevin process using a
-//' simple Euler integration. The drift function is a cubic polynomial, the
-//' diffusion funcation a quadratic.
-//'
-//'
-//' @param N a scalar denoting the length of the time series to generate.
-//' @param startpoint a scalar denoting the starting point of the time series.
-//' @param d13,d12,d11,d10 scalars denoting the coefficients for the drift polynomial.
-//' @param d22,d21,d20 scalars denoting the coefficients for the diffusion polynomial.
-//' @param sf a scalar denoting the sampling frequency.
-//' @param dt a scalar denoting the maximal time step of integration. Default
-//' \code{dt=0} yields \code{dt=1/sf}.
-//'
-//' @return \code{timeseries1D} returns a vector of length \code{N} with the
-//' generated time series.
-//'
-//' @author Philip Rinn
-//' @seealso \code{\link{timeseries2D}}
-//' @examples
-//' # Generate standardized Ornstein-Uhlenbeck-Process (d11=-1, d20=1)
-//' # with integration time step 0.01 and sampling frequency 1
-//' s <- timeseries1D(N=1e4, sf=1, dt=0.01);
-//' t <- 1:1e4;
-//' plot(t, s, t="l", main=paste("mean:", mean(s), " var:", var(s)));
-//' @import Rcpp
-//' @useDynLib Langevin
-//' @export
-// [[Rcpp::export]]
-NumericVector timeseries1D(const unsigned int& N, const double& startpoint=0,
-                           const double& d13=0, const double& d12=0,
-                           const double& d11=-1, const double& d10=0,
-                           const double& d22=0, const double& d21=0,
-                           const double& d20=1, const double& sf=1000,
-                           double dt=0) {
+// [[Rcpp::export(".timeseries1D")]]
+NumericVector timeseries1D(const unsigned int& N, const double& startpoint,
+                           const double& d13, const double& d12,
+                           const double& d11, const double& d10,
+                           const double& d22, const double& d21,
+                           const double& d20, const double& sf,
+                           double dt) {
     NumericVector ts(N, NA_REAL);
     ts[0] = startpoint;
 
@@ -81,5 +52,7 @@ NumericVector timeseries1D(const unsigned int& N, const double& startpoint=0,
         // Save every mth step
         ts[i] = x;
     }
+    ts.attr("class") = CharacterVector::create("ts");
+    ts.attr("tsp") = NumericVector::create(1, 1 + (N - 1)/sf, sf);
     return ts;
 }

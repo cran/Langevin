@@ -4,9 +4,9 @@
 #' diffusion functions from data sets.
 #'
 #'
-#' This package was package developed by the research group
-#' \emph{Turbulence, wind energy and stochastics} (TWiSt) at the Carl von
-#' Ossietzky University of Oldenburg.
+#' This package was developed by the research group
+#' \emph{Turbulence, Wind energy and Stochastics} (TWiSt) at the Carl von
+#' Ossietzky University of Oldenburg (Germany).
 #'
 #' @section Mathematical Background: A wide range of dynamic systems can be
 #' described by a stochastic differential equation, the Langevin equation. The

@@ -31,7 +31,7 @@
 #'
 #' with \eqn{a_{ij} = 0} for \eqn{ i + j > 4}
 #'
-#' @param N a scalar denoting the length of the time series to generate.
+#' @param N a scalar denoting the length of the time-series to generate.
 #' @param startpointx a scalar denoting the starting point of the time series x.
 #' @param startpointy a scalar denoting the starting point of the time series y.
 #' @param D1_1 a 4x4 matrix denoting the coefficients of D1 for x.
@@ -44,8 +44,8 @@
 #' @param dt a scalar denoting the maximal time step of integration. Default
 #' \code{dt=0} yields \code{dt=1/sf}.
 #'
-#' @return \code{timeseries2D} returns a matrix with the generated time series
-#' as rows.
+#' @return \code{timeseries2D} returns a time-series object with the generated
+#' time-series as colums.
 #'
 #' @author Philip Rinn
 #' @seealso \code{\link{timeseries1D}}

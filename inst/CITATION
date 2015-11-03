@@ -1,0 +1,33 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(
+    header = "To cite the 'Langevin' package in publications use:",
+    bibtype = "Manual",
+    key = "Rinn2015",
+    title = "Langevin Analysis in One and Two Dimensions",
+    author  = c(person('Philip', 'Rinn', role=c('aut','cre')),
+                person('Pedro G.', 'Lind', role='aut'),
+                person('David', 'Bastine', role='ctb')),
+    year = year,
+    note = note,
+    url = "https://CRAN.R-project.org/package=Langevin")
+
+bibentry(
+    header = "To cite the 'Langevin Approach' in publications use:",
+    bibtype = "Article",
+    key = "Friedrich2011",
+    title = "Approaching complexity by stochastic methods: From biological systems to turbulence",
+    author  = c(person("Rudolf", "Friedrich"),
+                person("Joachim", "Peinke"),
+                person("Muhammad", "Sahimi"),
+                person("Mohammed", "Reza Rahimi Tabar")),
+    journal = "Physics Reports",
+    year = 2011,
+    number = 5,
+    pages = "87--162",
+    volume = 506,
+    doi = "10.1016/j.physrep.2011.05.003",
+    issn = "0370-1573",
+    publisher = "Elsevier BV")
+

@@ -1,3 +1,29 @@
+2015-11-02  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add missing importFroms
+    * Tag as version 1.1.1
+
+2015-11-02  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add citation file
+    * Update vignette
+    * Tag as version 1.1
+
+2015-10-21  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add plot function for class 'Langevin' (only for 1D)
+
+2015-10-19  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add print function for class 'Langevin'
+
+2015-10-16  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add summary function for class 'Langevin'
+
+2015-09-07  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Langevin{1,2}D: read sampling frequency from time-series object
+        * Langevin2D: time-series need to be arranged as columns now!
+
+2015-09-03  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * timeseries{1,2}D: output is a time-series object now
+        * timeseries2D: time-series are the columns of the returned object now!
+
 2015-08-26  Philip Rinn <philip.rinn@uni-oldenburg.de>
     * Use title case for package title
     * Tag as version 1.0.3

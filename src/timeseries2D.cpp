@@ -15,21 +15,19 @@
 // You should have received a copy of the GNU General Public License along
 // with this program; if not, see <https://www.gnu.org/licenses/gpl-2.0>.
 
-// [[Rcpp::depends(RcppArmadillo)]]
-#define ARMA_NO_DEBUG
-#include <RcppArmadillo.h>
+#include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export(".timeseries2D")]]
-arma::mat timeseries2D(const unsigned int& N, const double& startpointx,
-                  const double& startpointy, const arma::mat& D1_1,
-                  const arma::mat& D1_2, const arma::mat& g_11,
-                  const arma::mat& g_12, const arma::mat& g_21,
-                  const arma::mat& g_22, const double& sf, double dt) {
-    arma::mat ts(2,N);
-    ts.fill(NA_REAL);
+NumericMatrix timeseries2D(const unsigned int& N, const double& startpointx,
+                  const double& startpointy, const NumericMatrix& D1_1,
+                  const NumericMatrix& D1_2, const NumericMatrix& g_11,
+                  const NumericMatrix& g_12, const NumericMatrix& g_21,
+                  const NumericMatrix& g_22, const double& sf, double dt) {
+    NumericMatrix ts(N, 2);
+    std::fill(ts.begin(), ts.end(), NA_REAL);
     ts(0,0) = startpointx;
-    ts(1,0) = startpointy;
+    ts(0,1) = startpointy;
 
     // Calculate the integration time step and related values
     double stime = 1.0/sf;
@@ -45,7 +43,7 @@ arma::mat timeseries2D(const unsigned int& N, const double& startpointx,
     double sumD1_1, sumD1_2;
     double sumG_11, sumG_12, sumG_21, sumG_22;
     double x = ts(0,0);
-    double y = ts(1,0);
+    double y = ts(0,1);
 
     for (unsigned int i = 0; i < N; i++)  {
         // Integrate m steps and just save the last
@@ -64,8 +62,10 @@ arma::mat timeseries2D(const unsigned int& N, const double& startpointx,
             y += sumD1_2*dt + std::sqrt(sumG_21*dt)*gamma1 + std::sqrt(sumG_22*dt)*gamma2;
         }
         // Save every mth step
-        ts(0,i) = x;
-        ts(1,i) = y;
+        ts(i,0) = x;
+        ts(i,1) = y;
     }
+    ts.attr("class") = CharacterVector::create("mts", "ts", "matrix");
+    ts.attr("tsp") = NumericVector::create(1, 1 + (N - 1)/sf, sf);
     return ts;
 }
