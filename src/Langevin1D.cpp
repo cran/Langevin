@@ -31,7 +31,6 @@ List Langevin1D(const arma::vec& data, const int& bins, const arma::vec& steps,
         int haveCores = omp_get_num_procs();
         if(reqThreads <= 0 || reqThreads > haveCores)
             reqThreads = haveCores;
-        omp_set_num_threads(reqThreads);
     #endif
     arma::vec U = arma::linspace<arma::vec>(data.min(), data.max(), (bins+1));
     int nsteps = steps.n_elem;
@@ -59,7 +58,7 @@ List Langevin1D(const arma::vec& data, const int& bins, const arma::vec& steps,
     D4.fill(NA_REAL);
     mean_bin.zeros();
 
-#pragma omp parallel default(shared)
+#pragma omp parallel num_threads(reqThreads) default(shared)
 {
     #pragma omp for
     for (int i = 0; i < bins; i++) {

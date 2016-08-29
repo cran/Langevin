@@ -1,3 +1,18 @@
+2016-08-29  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Tag as version 1.2
+    * Update vignette to meet the published version of the paper
+    * Update citation file
+
+2016-06-01  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add bug tracker and homepage
+
+2016-05-20  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Add README.md
+    * Update examples.r to clean and restore the environment correctly
+
+2016-01-27  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * OpenMP: Use recommended method to set the number of used threads
+
 2015-11-02  Philip Rinn <philip.rinn@uni-oldenburg.de>
     * Add missing importFroms
     * Tag as version 1.1.1

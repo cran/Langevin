@@ -31,7 +31,6 @@ List Langevin2D(const arma::mat& data, const int& bins, const arma::vec& steps,
         int haveCores = omp_get_num_procs();
         if(reqThreads <= 0 || reqThreads > haveCores)
             reqThreads = haveCores;
-        omp_set_num_threads(reqThreads);
     #endif
     int nsteps = steps.n_elem;
     arma::mat U((bins+1), 2);
@@ -53,7 +52,7 @@ List Langevin2D(const arma::mat& data, const int& bins, const arma::vec& steps,
     D2.fill(NA_REAL);
     mean_bin.zeros();
 
-#pragma omp parallel default(shared)
+#pragma omp parallel num_threads(reqThreads) default(shared)
 {
     #pragma omp for collapse(2)
     for (int i = 0; i < bins; i++) {

@@ -26,7 +26,7 @@ NumericVector timeseries1D(const unsigned int& N, const double& startpoint,
                            const double& d20, const double& sf,
                            double dt) {
     NumericVector ts(N, NA_REAL);
-    ts[0] = startpoint;
+    ts(0) = startpoint;
 
     // Calculate the integration time step and related values
     double stime = 1.0/sf;
@@ -39,7 +39,7 @@ NumericVector timeseries1D(const unsigned int& N, const double& startpoint,
 
     // Integration
     double gamma;
-    double x = ts[0];
+    double x = ts(0);
 
     for (unsigned int i = 0; i < N; i++)  {
         // Integrate m steps and just save the last
@@ -50,7 +50,7 @@ NumericVector timeseries1D(const unsigned int& N, const double& startpoint,
             x += (d13*std::pow(x,3) + d12*std::pow(x,2) + d11*x + d10)*dt + std::sqrt((d22*std::pow(x,2) + d21*x + d20)*dt)*gamma;
         }
         // Save every mth step
-        ts[i] = x;
+        ts(i) = x;
     }
     ts.attr("class") = CharacterVector::create("ts");
     ts.attr("tsp") = NumericVector::create(1, 1 + (N - 1)/sf, sf);

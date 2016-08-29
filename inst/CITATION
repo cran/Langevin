@@ -1,17 +1,20 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
-
 bibentry(
     header = "To cite the 'Langevin' package in publications use:",
-    bibtype = "Manual",
-    key = "Rinn2015",
-    title = "Langevin Analysis in One and Two Dimensions",
-    author  = c(person('Philip', 'Rinn', role=c('aut','cre')),
-                person('Pedro G.', 'Lind', role='aut'),
-                person('David', 'Bastine', role='ctb')),
-    year = year,
-    note = note,
-    url = "https://CRAN.R-project.org/package=Langevin")
+    bibtype = "Article",
+    key = "Rinn2016",
+    title = "The Langevin Approach: An R Package for Modeling Markov Processes",
+    author  = c(person('Philip', 'Rinn'),
+                person('Pedro G.', 'Lind'),
+                person('Matthias', 'Wächter'),
+                person("Joachim", "Peinke")),
+    journal = "Journal of Open Research Software",
+    year = 2016,
+    number = 1,
+    pages = "e34",
+    volume = 4,
+    doi = "10.5334/jors.123",
+    issn = "2049-9647",
+    publisher = "Ubiquity Press")
 
 bibentry(
     header = "To cite the 'Langevin Approach' in publications use:",
