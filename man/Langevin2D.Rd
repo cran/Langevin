@@ -4,8 +4,8 @@
 \alias{Langevin2D}
 \title{Calculate the Drift and Diffusion of two-dimensional stochastic processes}
 \usage{
-Langevin2D(data, bins, steps, sf = ifelse(is.mts(data), frequency(data), 1),
-  bin_min = 100, reqThreads = -1)
+Langevin2D(data, bins, steps, sf = ifelse(is.mts(data), frequency(data),
+  1), bin_min = 100, reqThreads = -1)
 }
 \arguments{
 \item{data}{a matrix containing the time series as columns or a time-series
@@ -77,10 +77,9 @@ label) and  each \eqn{\tau} step (column label). Dimension is
 \code{Langevin2D} calculates the Drift (with error) and Diffusion matrices
 for given time series.
 }
-\author{
-Philip Rinn
-}
 \seealso{
 \code{\link{Langevin1D}}
 }
-
+\author{
+Philip Rinn
+}

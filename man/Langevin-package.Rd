@@ -44,9 +44,7 @@ system state at \eqn{t+\tau} and the state at \eqn{t}. The average has to be
 taken over the whole ensemble or in the stationary case over all \eqn{t =
 t_i} with \eqn{X(t_i) = x}. Diffusion can be calculated analogously.
 }
-\author{
-Philip Rinn
-}
+
 \references{
 \bold{A review of the Langevin method can be found at:}
 
@@ -63,4 +61,6 @@ systems}. Phys. Lett. A.
 Friedrich, R.; et al. (2000) \emph{Extracting model equations from
 experimental data}. Phys. Lett. A.
 }
-
+\author{
+Philip Rinn
+}

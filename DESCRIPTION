@@ -1,8 +1,8 @@
 Package: Langevin
 Type: Package
 Title: Langevin Analysis in One and Two Dimensions
-Version: 1.2
-Date: 2016-08-29
+Version: 1.2.1
+Date: 2019-01-02
 Authors@R: c(person('Philip', 'Rinn', email='philip.rinn@uni-oldenburg.de',
     role=c('aut','cre')), person('Pedro G.', 'Lind', role='aut'),
     person('David', 'Bastine', role='ctb'))
@@ -18,11 +18,11 @@ NeedsCompilation: yes
 Depends: R (>= 3.0.2)
 Imports: Rcpp (>= 0.11.0)
 LinkingTo: Rcpp, RcppArmadillo (>= 0.4.600.0)
-RoxygenNote: 5.0.1
-Packaged: 2016-08-29 10:40:09 UTC; philip
+RoxygenNote: 6.1.1
+Packaged: 2019-01-02 10:56:22 UTC; philip
 Author: Philip Rinn [aut, cre],
   Pedro G. Lind [aut],
   David Bastine [ctb]
 Maintainer: Philip Rinn <philip.rinn@uni-oldenburg.de>
 Repository: CRAN
-Date/Publication: 2016-08-29 17:44:14
+Date/Publication: 2019-01-02 11:40:03 UTC

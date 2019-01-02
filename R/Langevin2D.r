@@ -57,13 +57,12 @@
 #' @seealso \code{\link{Langevin1D}}
 #' @import Rcpp
 #' @importFrom stats frequency is.mts
-#' @useDynLib Langevin
+#' @useDynLib Langevin, .registration=TRUE
 #' @export
 Langevin2D <- function(data, bins, steps,
                        sf=ifelse(is.mts(data), frequency(data), 1), bin_min=100,
                        reqThreads=-1) {
     if(nrow(data) == 2)
         stop("Time series have to be arranged in colums now. Please adopt your code!")
-    .Call('Langevin_Langevin2D', PACKAGE='Langevin', data, bins, steps, sf,
-          bin_min, reqThreads)
+    .Call('_Langevin_Langevin2D', data, bins, steps, sf, bin_min, reqThreads)
 }

@@ -4,8 +4,8 @@
 \alias{summary.Langevin}
 \title{Summarize estimated drift and diffusion coefficients}
 \usage{
-\method{summary}{Langevin}(object, ..., digits = max(3, getOption("digits") -
-  3))
+\method{summary}{Langevin}(object, ..., digits = max(3,
+  getOption("digits") - 3))
 }
 \arguments{
 \item{object}{an object of class "Langevin".}
@@ -25,4 +25,3 @@ summary method for class "Langevin".
 \author{
 Philip Rinn
 }
-

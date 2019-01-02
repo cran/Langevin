@@ -4,12 +4,13 @@
 \alias{timeseries2D}
 \title{Generate a 2D Langevin process}
 \usage{
-timeseries2D(N, startpointx = 0, startpointy = 0, D1_1 = matrix(c(0, -1,
-  rep(0, 14)), nrow = 4), D1_2 = matrix(c(0, 0, 0, 0, -1, rep(0, 11)), nrow =
-  4), g_11 = matrix(c(1, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3),
-  g_12 = matrix(c(0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3), g_21 = matrix(c(0,
-  0, 0, 0, 0, 0, 0, 0, 0), nrow = 3), g_22 = matrix(c(1, 0, 0, 0, 0, 0, 0, 0,
-  0), nrow = 3), sf = 1000, dt = 0)
+timeseries2D(N, startpointx = 0, startpointy = 0, D1_1 = matrix(c(0,
+  -1, rep(0, 14)), nrow = 4), D1_2 = matrix(c(0, 0, 0, 0, -1, rep(0,
+  11)), nrow = 4), g_11 = matrix(c(1, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3),
+  g_12 = matrix(c(0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3),
+  g_21 = matrix(c(0, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3),
+  g_22 = matrix(c(1, 0, 0, 0, 0, 0, 0, 0, 0), nrow = 3), sf = 1000,
+  dt = 0)
 }
 \arguments{
 \item{N}{a scalar denoting the length of the time-series to generate.}
@@ -56,10 +57,9 @@ with \eqn{a_{ij} = 0} for \eqn{ i + j > 5}.
 
 with \eqn{a_{ij} = 0} for \eqn{ i + j > 4}
 }
-\author{
-Philip Rinn
-}
 \seealso{
 \code{\link{timeseries1D}}
 }
-
+\author{
+Philip Rinn
+}

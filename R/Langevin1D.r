@@ -73,11 +73,10 @@
 #' abline(h=1, col='red');
 #' @import Rcpp
 #' @importFrom stats frequency is.ts
-#' @useDynLib Langevin
+#' @useDynLib Langevin, .registration=TRUE
 #' @export
 Langevin1D <- function(data, bins, steps,
                        sf=ifelse(is.ts(data), frequency(data), 1), bin_min=100,
                        reqThreads=-1) {
-    .Call('Langevin_Langevin1D', PACKAGE='Langevin', data, bins, steps, sf,
-          bin_min, reqThreads)
+    .Call('_Langevin_Langevin1D', data, bins, steps, sf, bin_min, reqThreads)
 }

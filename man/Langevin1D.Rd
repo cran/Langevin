@@ -4,8 +4,8 @@
 \alias{Langevin1D}
 \title{Calculate the Drift and Diffusion of one-dimensional stochastic processes}
 \usage{
-Langevin1D(data, bins, steps, sf = ifelse(is.ts(data), frequency(data), 1),
-  bin_min = 100, reqThreads = -1)
+Langevin1D(data, bins, steps, sf = ifelse(is.ts(data), frequency(data),
+  1), bin_min = 100, reqThreads = -1)
 }
 \arguments{
 \item{data}{a vector containing the time series or a time-series object.}
@@ -97,10 +97,9 @@ lines(est$mean_bin, est$mean_bin - est$mean_bin^3, col='red');
 plot(est$mean_bin, est$D2);
 abline(h=1, col='red');
 }
-\author{
-Philip Rinn
-}
 \seealso{
 \code{\link{Langevin2D}}
 }
-
+\author{
+Philip Rinn
+}

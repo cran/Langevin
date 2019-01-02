@@ -1,6 +1,6 @@
 ### Langevin Analysis in One and Two Dimensions
 
-The [Langevin package](http://cran.r-project.org/package=Langevin) provides R
+The [Langevin package](https://cran.r-project.org/package=Langevin) provides R
 functions to estimate drift and diffusion functions from time series and
 generate synthetic time series from given drift and diffusion coefficients.
 
@@ -8,14 +8,15 @@ generate synthetic time series from given drift and diffusion coefficients.
 ### Documentation
 
 All functions of the Langevin package have corresponding help files.
-Additionally the package ships a pdf vignette which corresponds to a paper on
-[arXiv](http://arxiv.org/pdf/1603.02036).
+Additionally the package ships a pdf vignette which corresponds to a
+[paper](https://dx.doi.org/10.5334/jors.123) published in the Journal of Open
+Research Software.
 
 
 ### Citation
 
 To cite the Langevin package and/or the mathematical concept behind it correctly
-see 'citation("Langevin")' for details.
+see `citation("Langevin")` for details.
 
 
 ### Examples
@@ -29,7 +30,7 @@ with examples that reproduce the figures from the vignette.
 ### Installation
 
 Released and tested versions of the Langevin package are available at
-[CRAN](http://cran.r-project.org) and can be installed from within R via
+[CRAN](https://cran.r-project.org) and can be installed from within R via
 
 ```R
 install.packages("Langevin")

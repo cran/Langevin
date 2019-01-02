@@ -4,8 +4,8 @@
 \alias{timeseries1D}
 \title{Generate a 1D Langevin process}
 \usage{
-timeseries1D(N, startpoint = 0, d13 = 0, d12 = 0, d11 = -1, d10 = 0,
-  d22 = 0, d21 = 0, d20 = 1, sf = 1000, dt = 0)
+timeseries1D(N, startpoint = 0, d13 = 0, d12 = 0, d11 = -1,
+  d10 = 0, d22 = 0, d21 = 0, d20 = 1, sf = 1000, dt = 0)
 }
 \arguments{
 \item{N}{a scalar denoting the length of the time-series to generate.}
@@ -37,10 +37,9 @@ s <- timeseries1D(N=1e4, sf=1, dt=0.01);
 t <- 1:1e4;
 plot(t, s, t="l", main=paste("mean:", mean(s), " var:", var(s)));
 }
-\author{
-Philip Rinn
-}
 \seealso{
 \code{\link{timeseries2D}}
 }
-
+\author{
+Philip Rinn
+}

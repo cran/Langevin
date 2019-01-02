@@ -25,10 +25,10 @@
 #' t <- 1:1e4;
 #' plot(t, s, t="l", main=paste("mean:", mean(s), " var:", var(s)));
 #' @import Rcpp
-#' @useDynLib Langevin
+#' @useDynLib Langevin, .registration=TRUE
 #' @export
 timeseries1D <- function(N, startpoint = 0, d13 = 0, d12 = 0, d11 = -1, d10 = 0,
                          d22 = 0, d21 = 0, d20 = 1, sf = 1000, dt = 0) {
-    .Call('Langevin_timeseries1D', PACKAGE = 'Langevin', N, startpoint, d13,
-          d12, d11, d10, d22, d21, d20, sf, dt)
+    .Call('_Langevin_timeseries1D', N, startpoint, d13, d12, d11, d10, d22,
+          d21, d20, sf, dt)
 }

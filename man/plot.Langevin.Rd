@@ -22,4 +22,3 @@ This method is only implemented for one-dimensional analysis for now.
 \author{
 Philip Rinn
 }
-

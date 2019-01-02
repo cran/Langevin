@@ -50,7 +50,7 @@
 #' @author Philip Rinn
 #' @seealso \code{\link{timeseries1D}}
 #' @import Rcpp
-#' @useDynLib Langevin
+#' @useDynLib Langevin, .registration=TRUE
 #' @export
 timeseries2D <- function(N, startpointx=0, startpointy=0,
                          D1_1=matrix(c(0,-1,rep(0,14)),nrow=4),
@@ -60,6 +60,6 @@ timeseries2D <- function(N, startpointx=0, startpointy=0,
                          g_21=matrix(c(0,0,0,0,0,0,0,0,0),nrow=3),
                          g_22=matrix(c(1,0,0,0,0,0,0,0,0),nrow=3),
                          sf=1000, dt=0) {
-    .Call('Langevin_timeseries2D', PACKAGE = 'Langevin', N, startpointx,
-          startpointy, D1_1, D1_2, g_11, g_12, g_21, g_22, sf, dt)
+    .Call('_Langevin_timeseries2D', N, startpointx, startpointy, D1_1, D1_2,
+          g_11, g_12, g_21, g_22, sf, dt)
 }
