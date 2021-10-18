@@ -4,8 +4,16 @@
 \alias{Langevin1D}
 \title{Calculate the Drift and Diffusion of one-dimensional stochastic processes}
 \usage{
-Langevin1D(data, bins, steps, sf = ifelse(is.ts(data), frequency(data),
-  1), bin_min = 100, reqThreads = -1)
+Langevin1D(
+  data,
+  bins,
+  steps,
+  sf = ifelse(is.ts(data), frequency(data), 1),
+  bin_min = 100,
+  reqThreads = -1,
+  kernel = FALSE,
+  h
+)
 }
 \arguments{
 \item{data}{a vector containing the time series or a time-series object.}
@@ -14,7 +22,8 @@ Langevin1D(data, bins, steps, sf = ifelse(is.ts(data), frequency(data),
 conditional moments on.}
 
 \item{steps}{a vector giving the \eqn{\tau} steps to calculate the
-conditional moments (in samples (=\eqn{\tau * sf})).}
+conditional moments (in samples (=\eqn{\tau * sf})). Only used if
+\code{kernel} is \code{FALSE}.}
 
 \item{sf}{a scalar denoting the sampling frequency (optional if \code{data}
 is a time-series object).}
@@ -23,10 +32,19 @@ is a time-series object).}
 Defaults to \code{100}.}
 
 \item{reqThreads}{a scalar denoting how many threads to use. Defaults to
-\code{-1} which means all available cores.}
+\code{-1} which means all available cores. Only used if \code{kernel} is
+\code{FALSE}.}
+
+\item{kernel}{a logical denoting if the kernel based Nadaraya-Watson
+estimator should be used to calculate drift and diffusion vectors.}
+
+\item{h}{a scalar denoting the bandwidth of the data. Defaults to Scott's
+variation of Silverman's rule of thumb. Only used if \code{kernel} is
+\code{TRUE}.}
 }
 \value{
-\code{Langevin1D} returns a list with thirteen components:
+\code{Langevin1D} returns a list with thirteen (six if \code{kernel}
+is \code{TRUE}) components:
 
 \item{D1}{a vector of the Drift coefficient for each \code{bin}.}
 
@@ -35,7 +53,7 @@ Defaults to \code{100}.}
 
 \item{D2}{a vector of the Diffusion coefficient for each \code{bin}.}
 
-\item{eD2}{a vector of the error of the Driffusion coefficient for
+\item{eD2}{a vector of the error of the Diffusion coefficient for
 each \code{bin}.}
 
 \item{D4}{a vector of the fourth Kramers-Moyal coefficient for each
@@ -43,24 +61,31 @@ each \code{bin}.}
 
 \item{mean_bin}{a vector of the mean value per \code{bin}.}
 
-\item{density}{a vector of the number of events per \code{bin}.}
+\item{density}{a vector of the number of events per \code{bin}.
+If \code{kernel} is \code{FALSE}.}
 
 \item{M1}{a matrix of the first conditional moment for each
-\eqn{\tau}. Rows corespond to \code{bin}, columns to \eqn{\tau}.}
+\eqn{\tau}. Rows correspond to \code{bin}, columns to \eqn{\tau}.
+If \code{kernel} is \code{FALSE}.}
 
 \item{eM1}{a matrix of the error of the first conditional moment
-for each \eqn{\tau}. Rows corespond to \code{bin}, columns to \eqn{\tau}.}
+for each \eqn{\tau}. Rows correspond to \code{bin}, columns to \eqn{\tau}.
+If \code{kernel} is \code{FALSE}.}
 
 \item{M2}{a matrix of the second conditional moment for each
-\eqn{\tau}. Rows corespond to \code{bin}, columns to \eqn{\tau}.}
+\eqn{\tau}. Rows correspond to \code{bin}, columns to \eqn{\tau}.
+If \code{kernel} is \code{FALSE}.}
 
 \item{eM2}{a matrix of the error of the second conditional moment
-for each \eqn{\tau}. Rows corespond to \code{bin}, columns to \eqn{\tau}.}
+for each \eqn{\tau}. Rows correspond to \code{bin}, columns to \eqn{\tau}.
+If \code{kernel} is \code{FALSE}.}
 
 \item{M4}{a matrix of the fourth conditional moment for each
-\eqn{\tau}. Rows corespond to \code{bin}, columns to \eqn{\tau}.}
+\eqn{\tau}. Rows correspond to \code{bin}, columns to \eqn{\tau}.
+If \code{kernel} is \code{FALSE}.}
 
-\item{U}{a vector of the \code{bin} borders.}
+\item{U}{a vector of the \code{bin} borders.
+If \code{kernel} is \code{FALSE}.}
 }
 \description{
 \code{Langevin1D} calculates the Drift and Diffusion vectors (with errors)
@@ -69,33 +94,33 @@ for a given time series.
 \examples{
 
 # Set number of bins, steps and the sampling frequency
-bins <- 20;
-steps <- c(1:5);
-sf <- 1000;
+bins <- 20
+steps <- c(1:5)
+sf <- 1000
 
 #### Linear drift, constant diffusion
 
 # Generate a time series with linear D^1 = -x and constant D^2 = 1
-x <- timeseries1D(N=1e6, d11=-1, d20=1, sf=sf);
+x <- timeseries1D(N = 1e6, d11 = -1, d20 = 1, sf = sf)
 # Do the analysis
-est <- Langevin1D(x, bins, steps, sf, reqThreads=2);
+est <- Langevin1D(data = x, bins = bins, steps = steps, sf = sf)
 # Plot the result and add the theoretical expectation as red line
-plot(est$mean_bin, est$D1);
-lines(est$mean_bin, -est$mean_bin, col='red');
-plot(est$mean_bin, est$D2);
-abline(h=1, col='red');
+plot(est$mean_bin, est$D1)
+lines(est$mean_bin, -est$mean_bin, col = "red")
+plot(est$mean_bin, est$D2)
+abline(h = 1, col = "red")
 
 #### Cubic drift, constant diffusion
 
 # Generate a time series with cubic D^1 = x - x^3 and constant D^2 = 1
-x <- timeseries1D(N=1e6, d13=-1, d11=1, d20=1, sf=sf);
+x <- timeseries1D(N = 1e6, d13 = -1, d11 = 1, d20 = 1, sf = sf)
 # Do the analysis
-est <- Langevin1D(x, bins, steps, sf, reqThreads=2);
+est <- Langevin1D(data = x, bins = bins, steps = steps, sf = sf)
 # Plot the result and add the theoretical expectation as red line
-plot(est$mean_bin, est$D1);
-lines(est$mean_bin, est$mean_bin - est$mean_bin^3, col='red');
-plot(est$mean_bin, est$D2);
-abline(h=1, col='red');
+plot(est$mean_bin, est$D1)
+lines(est$mean_bin, est$mean_bin - est$mean_bin^3, col = "red")
+plot(est$mean_bin, est$D2)
+abline(h = 1, col = "red")
 }
 \seealso{
 \code{\link{Langevin2D}}

@@ -45,7 +45,7 @@
 #' \code{dt=0} yields \code{dt=1/sf}.
 #'
 #' @return \code{timeseries2D} returns a time-series object with the generated
-#' time-series as colums.
+#' time-series as columns.
 #'
 #' @author Philip Rinn
 #' @seealso \code{\link{timeseries1D}}

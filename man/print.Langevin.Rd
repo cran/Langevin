@@ -4,8 +4,7 @@
 \alias{print.Langevin}
 \title{Print estimated drift and diffusion coefficients}
 \usage{
-\method{print}{Langevin}(x, digits = max(3, getOption("digits") - 3),
-  ...)
+\method{print}{Langevin}(x, digits = max(3, getOption("digits") - 3), ...)
 }
 \arguments{
 \item{x}{an object of class "Langevin".}

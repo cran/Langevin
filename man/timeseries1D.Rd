@@ -4,8 +4,19 @@
 \alias{timeseries1D}
 \title{Generate a 1D Langevin process}
 \usage{
-timeseries1D(N, startpoint = 0, d13 = 0, d12 = 0, d11 = -1,
-  d10 = 0, d22 = 0, d21 = 0, d20 = 1, sf = 1000, dt = 0)
+timeseries1D(
+  N,
+  startpoint = 0,
+  d13 = 0,
+  d12 = 0,
+  d11 = -1,
+  d10 = 0,
+  d22 = 0,
+  d21 = 0,
+  d20 = 1,
+  sf = 1000,
+  dt = 0
+)
 }
 \arguments{
 \item{N}{a scalar denoting the length of the time-series to generate.}
@@ -28,7 +39,7 @@ timeseries1D(N, startpoint = 0, d13 = 0, d12 = 0, d11 = -1,
 \description{
 \code{timeseries1D} generates a one-dimensional Langevin process using a
 simple Euler integration. The drift function is a cubic polynomial, the
-diffusion funcation a quadratic.
+diffusion function a quadratic.
 }
 \examples{
 # Generate standardized Ornstein-Uhlenbeck-Process (d11=-1, d20=1)

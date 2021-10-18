@@ -60,6 +60,9 @@ systems}. Phys. Lett. A.
 
 Friedrich, R.; et al. (2000) \emph{Extracting model equations from
 experimental data}. Phys. Lett. A.
+
+Honisch, C.; Friedrich, R. (2011). \emph{Estimation of Kramers-Moyal
+coefficients at low sampling rates.}. Physical Review E, 83(6), 066701.
 }
 \author{
 Philip Rinn

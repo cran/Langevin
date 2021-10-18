@@ -4,8 +4,7 @@
 \alias{summary.Langevin}
 \title{Summarize estimated drift and diffusion coefficients}
 \usage{
-\method{summary}{Langevin}(object, ..., digits = max(3,
-  getOption("digits") - 3))
+\method{summary}{Langevin}(object, ..., digits = max(3, getOption("digits") - 3))
 }
 \arguments{
 \item{object}{an object of class "Langevin".}
@@ -16,7 +15,7 @@ ignored in this function.}
 \item{digits}{integer, used for number formatting with \code{\link{signif}()}.}
 }
 \value{
-The function \code{summary.Langevin()} returns a sumamry of the
+The function \code{summary.Langevin()} returns a summary of the
 estimated drift and diffusion coefficients
 }
 \description{

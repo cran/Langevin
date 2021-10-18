@@ -32,9 +32,6 @@
 #' the second \code{bins} x \code{bins} elements define the diffusion
 #' \eqn{D^{(2)}_{22}} and the rest define the diffusion
 #' \eqn{D^{(2)}_{12} = D^{(2)}_{21}}.}
-#' @return \item{eD2}{a tensor with all estimated errors of the driffusion
-#' coefficient. Dimension is \code{bins} x \code{bins} x 3. Same expression as
-#' above.}
 #' @return \item{mean_bin}{a matrix of the mean value per \code{bin}.
 #' Dimension is \code{bins} x \code{bins} x 2. The first
 #' \code{bins} x \code{bins} elements define the mean for the first variable

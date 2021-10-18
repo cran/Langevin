@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // Langevin1D
 List Langevin1D(const arma::vec& data, const int& bins, const arma::vec& steps, const double& sf, const int& bin_min, int reqThreads);
 RcppExport SEXP _Langevin_Langevin1D(SEXP dataSEXP, SEXP binsSEXP, SEXP stepsSEXP, SEXP sfSEXP, SEXP bin_minSEXP, SEXP reqThreadsSEXP) {
@@ -35,6 +40,20 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const int& >::type bin_min(bin_minSEXP);
     Rcpp::traits::input_parameter< int >::type reqThreads(reqThreadsSEXP);
     rcpp_result_gen = Rcpp::wrap(Langevin2D(data, bins, steps, sf, bin_min, reqThreads));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kernel1D
+List kernel1D(const arma::vec& data, const int& bins, const double& sf, const double& h);
+RcppExport SEXP _Langevin_kernel1D(SEXP dataSEXP, SEXP binsSEXP, SEXP sfSEXP, SEXP hSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< const int& >::type bins(binsSEXP);
+    Rcpp::traits::input_parameter< const double& >::type sf(sfSEXP);
+    Rcpp::traits::input_parameter< const double& >::type h(hSEXP);
+    rcpp_result_gen = Rcpp::wrap(kernel1D(data, bins, sf, h));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -84,6 +103,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_Langevin_Langevin1D", (DL_FUNC) &_Langevin_Langevin1D, 6},
     {"_Langevin_Langevin2D", (DL_FUNC) &_Langevin_Langevin2D, 6},
+    {"_Langevin_kernel1D", (DL_FUNC) &_Langevin_kernel1D, 4},
     {"_Langevin_timeseries1D", (DL_FUNC) &_Langevin_timeseries1D, 11},
     {"_Langevin_timeseries2D", (DL_FUNC) &_Langevin_timeseries2D, 11},
     {NULL, NULL, 0}

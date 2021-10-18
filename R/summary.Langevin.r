@@ -8,7 +8,7 @@
 #' ignored in this function.
 #' @param digits integer, used for number formatting with \code{\link{signif}()}.
 #'
-#' @return The function \code{summary.Langevin()} returns a sumamry of the
+#' @return The function \code{summary.Langevin()} returns a summary of the
 #' estimated drift and diffusion coefficients
 #'
 #' @author Philip Rinn
@@ -17,11 +17,12 @@
 summary.Langevin <- function(object, ..., digits=max(3, getOption("digits") - 3)) {
     cat(paste0(" Number of bins: ", dim(object$D1)[1],
                if(dim(object$D1)[2] > 1) paste0("x", dim(object$D1)[2]), "\n"),
+        if("density" %in% names(object)) {
         paste0("Population of the bins:\n",
               "\tMin.  : ", min(object$density, na.rm=T), "\n",
               "\tMedian: ", round(median(object$density, na.rm=T)), "\n",
               "\tMean  : ", round(mean(object$density, na.rm=T)), "\n",
-              "\tMax.  : ", max(object$density, na.rm=T), "\n"),
+              "\tMax.  : ", max(object$density, na.rm=T), "\n")},
         paste0("Number of NA's for D1: ", length(which(is.na(object$D1))),
                "\n"),
         paste0("Number of NA's for D2: ", length(which(is.na(object$D2))),

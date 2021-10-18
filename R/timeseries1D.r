@@ -2,7 +2,7 @@
 #'
 #' \code{timeseries1D} generates a one-dimensional Langevin process using a
 #' simple Euler integration. The drift function is a cubic polynomial, the
-#' diffusion funcation a quadratic.
+#' diffusion function a quadratic.
 #'
 #'
 #' @param N a scalar denoting the length of the time-series to generate.

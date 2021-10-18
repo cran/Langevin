@@ -1,3 +1,11 @@
+2021-10-18 Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Tag as version 1.3.0
+    * Langevin1D: add option to use the kernel based Nadaraya-Watson estimator
+
+2021-09-04  Philip Rinn <philip.rinn@uni-oldenburg.de>
+    * Fix documentation: eD2 is not implemented for Langevin2D
+    * Fix spelling errors
+
 2019-01-02  Philip Rinn <philip.rinn@uni-oldenburg.de>
     * Tag as version 1.2.1
     * Remove calls to `Rcpp:::CxxFlags()` and `Rcpp:::LdFlags()`

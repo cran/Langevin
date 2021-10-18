@@ -4,8 +4,14 @@
 \alias{Langevin2D}
 \title{Calculate the Drift and Diffusion of two-dimensional stochastic processes}
 \usage{
-Langevin2D(data, bins, steps, sf = ifelse(is.mts(data), frequency(data),
-  1), bin_min = 100, reqThreads = -1)
+Langevin2D(
+  data,
+  bins,
+  steps,
+  sf = ifelse(is.mts(data), frequency(data), 1),
+  bin_min = 100,
+  reqThreads = -1
+)
 }
 \arguments{
 \item{data}{a matrix containing the time series as columns or a time-series
@@ -45,10 +51,6 @@ Dimension is \code{bins} x \code{bins} x 3. The first
 the second \code{bins} x \code{bins} elements define the diffusion
 \eqn{D^{(2)}_{22}} and the rest define the diffusion
 \eqn{D^{(2)}_{12} = D^{(2)}_{21}}.}
-
-\item{eD2}{a tensor with all estimated errors of the driffusion
-coefficient. Dimension is \code{bins} x \code{bins} x 3. Same expression as
-above.}
 
 \item{mean_bin}{a matrix of the mean value per \code{bin}.
 Dimension is \code{bins} x \code{bins} x 2. The first
