@@ -1,5 +1,5 @@
-7cbc3ca6c4c70112422894850d2e0644 *ChangeLog
-044f163e2c5b83f582e9af8dd9b24851 *DESCRIPTION
+047e9a4857525ce9cc9a6661b10b6087 *ChangeLog
+dd0a53250ce1d1c437ac1c8a04df71bc *DESCRIPTION
 b234ee4d69f5fce4486a80fdaf4a4263 *GPL-2
 e6d25ef6a9eadb7940cd3bed65ce10c3 *NAMESPACE
 78518f0804b5688b00f6d4ba58efef1d *R/Langevin-package.r
@@ -15,7 +15,7 @@ bd8d02b02f533ed294b3214374b85185 *build/vignette.rds
 214c77cded843b2dcdca5853cef8dae1 *cleanup
 c678a29f5817af2d07859868ce1c7163 *inst/CITATION
 b7f88ab3f0e968eebe748483917e6ebc *inst/doc/Langevin.Rnw
-ca8b2e5408f87fc7f09ff4e4218038e2 *inst/doc/Langevin.pdf
+75fddcf381c028602250581942ad788e *inst/doc/Langevin.pdf
 f0c6e9cbb36cc6f33a7e4297718b6da5 *man/Langevin-package.Rd
 875e155f2b82ad2fc7dad36837774ae3 *man/Langevin1D.Rd
 d8873b1eb7aa77d557fa1cea58eb3d34 *man/Langevin2D.Rd
@@ -26,8 +26,8 @@ d8873b1eb7aa77d557fa1cea58eb3d34 *man/Langevin2D.Rd
 ad5892e1955c678de59327a23d89e7fa *man/timeseries2D.Rd
 a38b16b55d9cf34a201261d0a4dd4917 *src/Langevin1D.cpp
 4f78aeb0eddb89cb52333075b351178c *src/Langevin2D.cpp
-b3187122ffc4510ff2a7493075e5c15e *src/Makevars
-61059660eb073d93e00e8ee054237071 *src/Makevars.win
+15570717c2f61f5db63cfdedb447668e *src/Makevars
+15570717c2f61f5db63cfdedb447668e *src/Makevars.win
 e3227cb02e1a7a78358101048e23af0c *src/RcppExports.cpp
 644fda870c9681cf0da0028a28390452 *src/kernel1D.cpp
 68ffd286eddbd7bbec0802ea48cb0e9d *src/linreg.h
