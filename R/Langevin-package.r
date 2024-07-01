@@ -41,7 +41,6 @@
 #'
 #' @name Langevin-package
 #' @aliases Langevin-package
-#' @docType package
 #' @author Philip Rinn
 #' @references
 #'
@@ -62,4 +61,5 @@
 #'
 #' Honisch, C.; Friedrich, R. (2011). \emph{Estimation of Kramers-Moyal
 #' coefficients at low sampling rates.}. Physical Review E, 83(6), 066701.
-NULL
+#' @keywords internal
+"_PACKAGE"

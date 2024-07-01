@@ -2,6 +2,7 @@
 % Please edit documentation in R/Langevin-package.r
 \docType{package}
 \name{Langevin-package}
+\alias{Langevin}
 \alias{Langevin-package}
 \title{An \R package for stochastic data analysis}
 \description{
@@ -64,6 +65,14 @@ experimental data}. Phys. Lett. A.
 Honisch, C.; Friedrich, R. (2011). \emph{Estimation of Kramers-Moyal
 coefficients at low sampling rates.}. Physical Review E, 83(6), 066701.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://gitlab.uni-oldenburg.de/TWiSt/Langevin}
+}
+
+}
 \author{
 Philip Rinn
 }
+\keyword{internal}

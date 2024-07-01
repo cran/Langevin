@@ -94,15 +94,15 @@ List Langevin1D(const arma::vec& data, const int& bins, const arma::vec& steps,
             M2.row(i) = arma::trans(sum_m2/len_step);
             M4.row(i) = arma::trans(sum_m4/len_step);
             // calculate the errors of M1 and M2
-            eM1.row(i) = arma::trans(arma::sqrt((M2.row(i) - arma::square(M1.row(i)))/len_step));
-            eM2.row(i) = arma::trans(arma::sqrt((M4.row(i) - arma::square(M2.row(i)))/len_step));
+            eM1.row(i) = arma::sqrt((M2.row(i) - arma::square(M1.row(i)))/arma::trans(len_step));
+            eM2.row(i) = arma::sqrt((M4.row(i) - arma::square(M2.row(i)))/arma::trans(len_step));
 
             // linear regression with weights to get D1, D2 and D4
-            arma::vec coef = linreg(steps, arma::trans(M1.row(i)), 1/eM1.row(i));
+            arma::vec coef = linreg(steps, arma::trans(M1.row(i)), arma::trans(1/eM1.row(i)));
             D1(i) = sf*coef(1);
             // 2 * tau * D2 = M2 - (tau * D1)^2
             arma::vec y = arma::trans(M2.row(i)) - arma::square(steps*coef(1));
-            coef = linreg(steps, y, 1/eM2.row(i));
+            coef = linreg(steps, y, arma::trans(1/eM2.row(i)));
             D2(i) = sf*coef(1)/2;
             coef = linreg(steps, arma::trans(M4.row(i)));
             D4(i) = sf*coef(1)/24;
