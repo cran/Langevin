@@ -72,9 +72,9 @@ List Langevin1D(const arma::vec& data, const int& bins, const arma::vec& steps,
         len_step.zeros();
         double len_bin = 0;
         for (int n = 0; n < data.n_elem - steps.max(); n++) {
-            if(data(n) >= U(i) && data(n) < U(i+1) && arma::is_finite(data(n))) {
+            if(data(n) >= U(i) && data(n) < U(i+1) && std::isfinite(data(n))) {
                 for (int s = 0; s < nsteps; s++) {
-                    if(arma::is_finite(data(n+steps(s)))) {
+                    if(std::isfinite(data(n+steps(s)))) {
                         double inc = data(n+steps(s)) - data(n);
                         sum_m1(s) += inc;
                         sum_m2(s) += inc*inc;

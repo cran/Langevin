@@ -65,9 +65,9 @@ List Langevin2D(const arma::mat& data, const int& bins, const arma::vec& steps,
             len_step.zeros();
             double len_bin = 0;;
             for (int n = 0; n < data.n_rows - steps.max(); n++) {
-                if(data(n,0) >= U(i,0) && data(n,0) < U(i+1,0) && data(n,1) >= U(j,1) && data(n,1) < U(j+1,1) && arma::is_finite(data(n,0)) && arma::is_finite(data(n,1))) {
+                if(data(n,0) >= U(i,0) && data(n,0) < U(i+1,0) && data(n,1) >= U(j,1) && data(n,1) < U(j+1,1) && std::isfinite(data(n,0)) && std::isfinite(data(n,1))) {
                     for (int s = 0; s < nsteps; s++) {
-                        if(arma::is_finite(data(n+steps(s),0)) && arma::is_finite(data(n+steps(s),1))) {
+                        if(std::isfinite(data(n+steps(s),0)) && std::isfinite(data(n+steps(s),1))) {
                             double inc0 = data(n+steps(s),0) - data(n,0);
                             double inc1 = data(n+steps(s),1) - data(n,1);
                             sum_m1(0,s) += inc0;
